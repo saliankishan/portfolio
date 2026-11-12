@@ -393,7 +393,7 @@ function App() {
   return (
     <>
       {introVisible && (
-        <section className="cinematic-opening" aria-label="Kishan The Journey opening sequence">
+        <section className="cinematic-opening" aria-label="Kishan The Signal opening sequence">
           <div className="opening-atmosphere" />
           <div className="opening-frame opening-frame-top"><span>KISHAN / THE SIGNAL</span><span>A PORTFOLIO EXPERIENCE</span></div>
           <div className="opening-center">
@@ -408,7 +408,7 @@ function App() {
         </section>
       )}
       {!introVisible && !showPortfolio && <ProfileGate onSelect={chooseViewer} exiting={profileTransition} />}
-      <div className={`site-shell ${showPortfolio ? "portfolio-unlocked" : "portfolio-locked"}`} id="top">
+      <div className={`site-shell profile-mode-${selectedViewer?.id || "default"} ${showPortfolio ? "portfolio-unlocked" : "portfolio-locked"}`} id="top">
         <div className="grain" aria-hidden="true" />
         <header className={`site-header ${scrolled ? "header-scrolled" : ""}`}>
           <div className="header-inner">
@@ -458,7 +458,7 @@ function App() {
           </section>
 
           {selectedViewer && (
-            <section className="profile-lens section-wrap reveal" aria-label={`${selectedViewer.name} profile summary`}>
+            <section className="profile-lens section-wrap" aria-label={`${selectedViewer.name} profile summary`}>
               <div className="profile-lens-heading">
                 <div><span className="lens-overline">{selectedViewer.badge} / PERSONALIZED VIEW</span><h2>{selectedViewer.lensTitle}</h2></div>
                 <p>{selectedViewer.lensIntro}</p>
