@@ -466,9 +466,11 @@ body:has(.profile-gate) { overflow: hidden; }
   padding-right: .11em;
 }
 .opening-title em {
+  display: block;
   color: var(--accent);
-  font: italic 500 clamp(22px, 4vw, 43px) var(--serif);
-  letter-spacing: .07em;
+  font: italic 500 clamp(21px, 3.7vw, 42px) var(--serif);
+  letter-spacing: .045em;
+  white-space: nowrap;
 }
 .opening-divider {
   width: min(310px, 65%);
@@ -488,7 +490,7 @@ body:has(.profile-gate) { overflow: hidden; }
 .opening-tagline {
   color: #9e9595;
   font: 8px var(--mono);
-  letter-spacing: .28em;
+  letter-spacing: .2em;
   animation: openingTextIn .9s 1s both;
 }
 .opening-skip {
@@ -721,7 +723,7 @@ body:has(.profile-gate) { overflow: hidden; }
   .opening-frame-top { top: 9%; }.opening-frame-bottom { bottom: 9%; }
   .opening-center { margin-top: -20px; }
   .opening-title span { font-size: clamp(57px, 15vw, 92px); }
-  .opening-title em { font-size: 25px; }
+  .opening-title em { font-size: clamp(16px, 5.5vw, 23px); letter-spacing: .045em; white-space: nowrap; }
   .opening-overline { font-size: 7px; letter-spacing: .18em; }
   .opening-skip { right: 8%; bottom: 15%; font-size: 7px; }
   .opening-atmosphere { width: 115vw; }
@@ -752,7 +754,7 @@ body:has(.profile-gate) { overflow: hidden; }
 
 
 /* ─────────────────────────────────────────────────────────────
-   THE SIGNAL — PROFILE-AWARE CONTENT + DESKTOP TYPOGRAPHY PASS
+   BEYOND THE BUILD — PROFILE-AWARE CONTENT + DESKTOP TYPOGRAPHY PASS
    ───────────────────────────────────────────────────────────── */
 .profile-lens {
   padding-top: 48px;
