@@ -224,7 +224,7 @@ function ProfileGate({ onSelect, exiting }) {
         <span className="profile-gate-edition">A PERSONAL PORTFOLIO EXPERIENCE</span>
       </header>
       <div className="profile-gate-content">
-        <p className="profile-gate-overline">THE JOURNEY / 2026</p>
+        <p className="profile-gate-overline">THE SIGNAL / 2026</p>
         <h1>Who’s watching?</h1>
         <p className="profile-gate-subtitle">Choose your perspective. The story is the same — the first stop is yours.</p>
         <div className="profile-options">
@@ -347,8 +347,8 @@ function App() {
 
   const chooseViewer = (profile) => {
     setSelectedViewer(profile);
-    // Data-focused viewers land on the projects most relevant to their chosen path.
-    setActiveFilter(profile.id === "analyst" || profile.id === "scientist" ? "Data" : "All");
+    // Every profile starts with a view tailored to its audience.
+    setActiveFilter(profile.defaultFilter || "All");
     setProfileTransition(true);
     window.setTimeout(() => setShowPortfolio(true), 620);
   };
@@ -375,7 +375,19 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const filteredProjects = useMemo(() => activeFilter === "All" ? projects : projects.filter((p) => p.type === activeFilter.toLowerCase()), [activeFilter]);
+  const filteredProjects = useMemo(() => {
+    const visible = activeFilter === "All"
+      ? projects
+      : projects.filter((project) => project.type === activeFilter.toLowerCase());
+    const order = selectedViewer?.projectOrder || [];
+    return [...visible].sort((a, b) => {
+      const aIndex = order.indexOf(a.id);
+      const bIndex = order.indexOf(b.id);
+      return (aIndex < 0 ? 999 : aIndex) - (bIndex < 0 ? 999 : bIndex);
+    });
+  }, [activeFilter, selectedViewer]);
+
+  const heroTarget = selectedViewer?.id === "scientist" ? "#research" : "#work";
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -383,10 +395,10 @@ function App() {
       {introVisible && (
         <section className="cinematic-opening" aria-label="Kishan The Journey opening sequence">
           <div className="opening-atmosphere" />
-          <div className="opening-frame opening-frame-top"><span>KISHAN ORIGINALS</span><span>AN ONGOING STORY</span></div>
+          <div className="opening-frame opening-frame-top"><span>KISHAN / THE SIGNAL</span><span>A PORTFOLIO EXPERIENCE</span></div>
           <div className="opening-center">
             <p className="opening-overline">A PERSONAL PORTFOLIO EXPERIENCE</p>
-            <div className="opening-title"><span>KISHAN</span><em>THE JOURNEY</em></div>
+            <div className="opening-title"><span>KISHAN</span><em>THE SIGNAL</em></div>
             <div className="opening-divider"><i /></div>
             <p className="opening-tagline">EVERY DATA POINT HAS A STORY.</p>
           </div>
@@ -420,10 +432,10 @@ function App() {
           <section className="hero section-wrap">
             <div className="hero-copy">
               <div className="hero-kicker"><span className="status-pulse" /> {selectedViewer?.kicker || "MCA STUDENT · MIT MANIPAL"} <span className="kicker-rule" /> INDIA</div>
-              <h1>Curiosity is<br/>my <em>starting point.</em></h1>
+              <h1>{selectedViewer?.heroLineOne || "Curiosity is"}<br/><em>{selectedViewer?.heroLineTwo || "my starting point."}</em></h1>
               <p className="hero-description">{selectedViewer?.intro || "I’m Kishan — learning to turn data into understanding, and understanding into better decisions."}</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#work">Explore my work <ArrowUpRight size={16}/></a>
+                <a className="button button-primary" href={heroTarget}>{selectedViewer?.cta || "Explore my work"} <ArrowUpRight size={16}/></a>
                 <a className="button button-quiet" href="#story">Get to know me <ArrowDown size={15}/></a>
               </div>
               <div className="hero-footnote"><span>01 — 06</span><span>SCROLL TO EXPLORE</span><div className="scroll-line" /></div>
@@ -439,11 +451,30 @@ function App() {
                 </div>
                 <div className="art-bottomline"><span>THINK / BUILD / LEARN</span><span>FIG. 01</span></div>
               </div>
-              <div className="hero-stamp"><span>THE</span><strong>JOURNEY</strong><i>IS IN PROGRESS</i></div>
+              <div className="hero-stamp"><span>THE</span><strong>SIGNAL</strong><i>IS IN PROGRESS</i></div>
               <div className="hero-coordinate">MANIPAL<br/>INDIA</div>
             </div>
             <div className="hero-side-note">A PORTFOLIO IN PROGRESS — UPDATED AS I GROW</div>
           </section>
+
+          {selectedViewer && (
+            <section className="profile-lens section-wrap reveal" aria-label={`${selectedViewer.name} profile summary`}>
+              <div className="profile-lens-heading">
+                <div><span className="lens-overline">{selectedViewer.badge} / PERSONALIZED VIEW</span><h2>{selectedViewer.lensTitle}</h2></div>
+                <p>{selectedViewer.lensIntro}</p>
+              </div>
+              <div className="profile-lens-cards">
+                {selectedViewer.focus.map((item, index) => (
+                  <article className="lens-card" key={item.label}>
+                    <span className="lens-card-index">0{index + 1}</span>
+                    <span className="lens-card-label">{item.label}</span>
+                    <strong>{item.value}</strong>
+                    <p>{item.detail}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           <section className="ticker" aria-label="Areas of interest"><div className="ticker-track">{Array.from({length: 2}, (_, i) => <div className="ticker-group" key={i}><span>DATA ANALYTICS</span><b>✳</b><span>PREDICTIVE MODELLING</span><b>✳</b><span>PROBLEM SOLVING</span><b>✳</b><span>CONTINUOUS LEARNING</span><b>✳</b></div>)}</div></section>
 
@@ -464,12 +495,12 @@ function App() {
 
           <section id="work" className="work-section section-space">
             <div className="section-wrap">
-              <div className="work-heading reveal"><div><SectionLabel index="02">SELECTED WORK</SectionLabel><h2>Things I’ve <em>made.</em></h2></div><p>A collection of projects, experiments and questions I’ve explored through code. Each one taught me something different.</p></div>
+              <div className="work-heading reveal"><div><SectionLabel index="02">{selectedViewer?.workLabel || "SELECTED WORK"}</SectionLabel><h2>{selectedViewer?.workTitle || "Things I’ve"} <em>{selectedViewer ? "" : "made."}</em></h2></div><p>{selectedViewer?.workIntro || "A collection of projects, experiments and questions I’ve explored through code. Each one taught me something different."}</p></div>
               <div className="filter-row reveal" role="group" aria-label="Filter projects">
                 {["All", "Data", "AI", "Web"].map((filter) => <button key={filter} className={activeFilter === filter ? "filter-active" : ""} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === "All" ? projects.length : projects.filter((p) => p.type === filter.toLowerCase()).length.toString().padStart(2, "0")}</span></button>)}
               </div>
-              <div className="project-grid">
-                {filteredProjects.map((project, index) => <div className="reveal" key={project.id} style={{ transitionDelay: `${(index % 2) * 90}ms` }}><ProjectCard project={project} onOpen={setSelectedProject}/></div>)}
+              <div className="project-grid" key={activeFilter}>
+                {filteredProjects.map((project, index) => <div className="project-grid-item" key={project.id} style={{ animationDelay: `${index * 70}ms` }}><ProjectCard project={project} onOpen={setSelectedProject}/></div>)}
               </div>
               <div className="work-footer reveal"><span>MORE EXPERIMENTS WILL FIND THEIR WAY HERE.</span><a href={GITHUB} target="_blank" rel="noreferrer">Explore all repositories <ArrowUpRight size={15}/></a></div>
             </div>
