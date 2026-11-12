@@ -481,7 +481,7 @@ function App() {
                 <div className="art-topline"><span>FIELD NOTES / KS-026</span><span>ACADEMIC YEAR / 2026</span></div>
                 <div className="art-portrait-wrap">
                   <div className="art-ring ring-a" /><div className="art-ring ring-b" />
-                  <div className="portrait-disc"><img src="./images/kishan-portrait.webp" alt="Kishan Salian, portfolio portrait" fetchPriority="high" /></div>
+                  <div className="portrait-disc"><img src="./images/kishan-portrait.png" alt="Kishan D Salian, portfolio portrait" fetchPriority="high" /></div>
                   <div className="portrait-cross cross-a">+</div><div className="portrait-cross cross-b">+</div>
                   <div className="orbit-label label-a">ANALYSE</div><div className="orbit-label label-b">QUESTION</div>
                 </div>
