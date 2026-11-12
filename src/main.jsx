@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, Github, Linkedin, Mail,
-  Menu, X, Play, Sparkles, Database, BrainCircuit, Code2,
-  Layers3, Compass, ExternalLink, ChevronRight, Github as GithubIcon
+  ArrowDown, ArrowRight, ArrowUpRight, Linkedin, Mail,
+  Menu, X, Sparkles, Database, Code2, Layers3, ExternalLink, Github as GithubIcon
 } from "lucide-react";
 import "./style.css";
 
@@ -101,12 +100,12 @@ const projects = [
 ];
 
 const skills = [
-  { name: "Python", detail: "Data work & scripting", level: "Core", icon: Code2 },
-  { name: "SQL", detail: "Working with structured data", level: "Core", icon: Database },
-  { name: "Excel", detail: "Analysis & reporting", level: "Core", icon: Layers3 },
-  { name: "C++", detail: "Programming fundamentals", level: "Working", icon: Code2 },
-  { name: "HTML & CSS", detail: "Web foundations", level: "Working", icon: Layers3 },
-  { name: "Flask", detail: "Python web applications", level: "Working", icon: Code2 }
+  { name: "Python", detail: "Data work & scripting", level: "In use", icon: Code2 },
+  { name: "SQL", detail: "Working with structured data", level: "In use", icon: Database },
+  { name: "Excel", detail: "Analysis & reporting", level: "In use", icon: Layers3 },
+  { name: "C++", detail: "Programming fundamentals", level: "In use", icon: Code2 },
+  { name: "HTML & CSS", detail: "Web foundations", level: "In use", icon: Layers3 },
+  { name: "Flask", detail: "Python web applications", level: "In use", icon: Code2 }
 ];
 
 function BrandMark() {
@@ -245,7 +244,7 @@ function App() {
             </div>
             <div className="hero-art">
               <div className="art-frame">
-                <div className="art-topline"><span>FIELD NOTES / KS-026</span><span>EST. 2002*</span></div>
+                <div className="art-topline"><span>FIELD NOTES / KS-026</span><span>ACADEMIC YEAR / 2026</span></div>
                 <div className="art-portrait-wrap">
                   <div className="art-ring ring-a" /><div className="art-ring ring-b" />
                   <div className="portrait-disc"><img src="https://avatars.githubusercontent.com/u/207218147?v=4" alt="Kishan's GitHub profile avatar" /></div>
@@ -255,7 +254,7 @@ function App() {
                 <div className="art-bottomline"><span>THINK / BUILD / LEARN</span><span>FIG. 01</span></div>
               </div>
               <div className="hero-stamp"><span>THE</span><strong>JOURNEY</strong><i>IS IN PROGRESS</i></div>
-              <div className="hero-coordinate">13°20' N<br/>74°47' E</div>
+              <div className="hero-coordinate">MANIPAL<br/>INDIA</div>
             </div>
             <div className="hero-side-note">A PORTFOLIO IN PROGRESS — UPDATED AS I GROW</div>
           </section>
