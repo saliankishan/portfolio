@@ -1,6 +1,6 @@
-# Kishan — The Journey
+# Kishan | The Signal
 
-A cinematic, editorial-style portfolio for Kishan D Salian, built with React and Vite.
+A cinematic, Netflix-inspired portfolio for Kishan D Salian, with an animated opening sequence, a viewer profile selector, and profile-tailored content. Built with React and Vite.
 
 **Live site:** https://saliankishan.github.io/portfolio/
 
