@@ -126,6 +126,13 @@ const VIEWER_PROFILES = [
     workLabel: "SELECTED EXPERIENCE",
     workTitle: "Evidence of learning.",
     workIntro: "A cross-section of the projects I have completed and the research I am currently developing.",
+    storyLead: "I’m an MCA student at MIT Manipal with a strong academic foundation in computer applications and hands-on experience building practical projects.",
+    storyDetail: "My BCA gave me a foundation in programming and software concepts. I’m now developing that foundation through postgraduate study, independent projects and inter-college problem-solving events.",
+    storyDetailExtra: "I value clear communication, consistent learning and being able to explain not only what I built, but why I made those decisions.",
+    toolkitTitle: "Skills I’m applying and developing.",
+    toolkitIntro: "A practical snapshot of the technologies I have used across coursework and projects, without overstating my level of expertise.",
+    skillOrder: ["Python", "SQL", "Excel", "C++", "Flask", "HTML & CSS"],
+    storySectionTitle: "BACKGROUND & EDUCATION",
     projectOrder: ["weather", "retirement", "helpdesk", "aircanvas", "wumpus", "foodfest"],
     focus: [
       { label: "CURRENT STUDY", value: "MCA", detail: "MIT Manipal · School of Computer Engineering" },
@@ -150,6 +157,13 @@ const VIEWER_PROFILES = [
     workLabel: "DATA PROJECTS",
     workTitle: "Working with data.",
     workIntro: "Start with the data-focused projects: a weather dashboard and a predictive retirement-fund research study.",
+    storyLead: "I’m building towards data analytics by learning how to question, clean, structure and interpret information — then communicate what it means.",
+    storyDetail: "My current foundations are Python, SQL and Excel. The Weather Dashboard helped me work with external data and comparisons, while my retirement-fund research lets me explore synthetic financial data and predictive approaches.",
+    storyDetailExtra: "I’m still developing my analytical and statistical depth. My goal is to become a capable data analyst first, then grow towards data science through stronger modelling and experimentation.",
+    toolkitTitle: "The tools behind the analysis.",
+    toolkitIntro: "Prioritising the practical foundations most relevant to analyst work: programming, querying structured data and working with spreadsheets.",
+    skillOrder: ["SQL", "Python", "Excel", "Flask", "C++", "HTML & CSS"],
+    storySectionTitle: "THE ANALYTICAL PATH",
     projectOrder: ["retirement", "weather", "helpdesk", "aircanvas", "wumpus", "foodfest"],
     focus: [
       { label: "CORE TOOLS", value: "SQL · Python · Excel", detail: "Building analysis foundations" },
@@ -174,6 +188,13 @@ const VIEWER_PROFILES = [
     workLabel: "RESEARCH & AI",
     workTitle: "Beyond the dashboard.",
     workIntro: "The projects are ordered to foreground predictive modelling, natural language processing and computer vision.",
+    storyLead: "I’m interested in how data can be used to understand patterns, test assumptions and build predictive systems — not just produce charts.",
+    storyDetail: "My current MCA research, Retirement Fund Estimation Using Predictive Analytics, explores prediction using a synthetic financial dataset. I’m studying how a financial baseline can be compared with regression-based models.",
+    storyDetailExtra: "Alongside the research, projects involving natural language processing and computer vision have helped me explore different ways software can interpret information. I’m still building the statistics and machine-learning foundations behind this direction.",
+    toolkitTitle: "Foundations for modelling.",
+    toolkitIntro: "The programming and application tools I currently use, alongside the statistics and machine-learning knowledge I’m continuing to develop.",
+    skillOrder: ["Python", "SQL", "C++", "Flask", "Excel", "HTML & CSS"],
+    storySectionTitle: "RESEARCH DIRECTION",
     projectOrder: ["retirement", "helpdesk", "aircanvas", "weather", "wumpus", "foodfest"],
     focus: [
       { label: "RESEARCH DIRECTION", value: "Predictive analytics", detail: "Retirement-fund estimation study" },
@@ -198,6 +219,13 @@ const VIEWER_PROFILES = [
     workLabel: "THE COLLECTION",
     workTitle: "A little of everything.",
     workIntro: "Explore the full collection, from interactive browser projects and creative computing to analytics and research.",
+    storyLead: "I like exploring different kinds of problems — sometimes that means building an interactive website, sometimes experimenting with computer vision, and sometimes working with data.",
+    storyDetail: "Each project has been a way to learn by doing: planning the experience, breaking the problem into pieces, trying an approach and improving it when something does not work.",
+    storyDetailExtra: "The variety is intentional. I’m using these experiments to discover what I enjoy, strengthen my fundamentals and gradually specialise in data analytics and data science.",
+    toolkitTitle: "A toolkit that keeps evolving.",
+    toolkitIntro: "A mix of languages and tools used across web projects, Python applications and early data-focused work.",
+    skillOrder: ["HTML & CSS", "Python", "C++", "SQL", "Flask", "Excel"],
+    storySectionTitle: "THE WIDER PICTURE",
     projectOrder: ["wumpus", "foodfest", "aircanvas", "helpdesk", "weather", "retirement"],
     focus: [
       { label: "INTERACTIVE WEB", value: "Hunt the Wumpus", detail: "React · TypeScript · browser game" },
@@ -205,7 +233,7 @@ const VIEWER_PROFILES = [
       { label: "DATA EXPERIMENTS", value: "Weather Dashboard", detail: "APIs · comparisons · history" }
     ]
   }
-];;
+];
 
 function BrandMark() {
   return <a className="brand" href="#top" aria-label="Kishan home"><span className="brand-symbol">K<span>.</span></span><span className="brand-word">KISHAN SALIAN</span></a>;
@@ -388,6 +416,14 @@ function App() {
   }, [activeFilter, selectedViewer]);
 
   const heroTarget = selectedViewer?.id === "scientist" ? "#research" : "#work";
+  const displayedSkills = useMemo(() => {
+    const order = selectedViewer?.skillOrder || [];
+    return [...skills].sort((a, b) => {
+      const aIndex = order.indexOf(a.name);
+      const bIndex = order.indexOf(b.name);
+      return (aIndex < 0 ? 999 : aIndex) - (bIndex < 0 ? 999 : bIndex);
+    });
+  }, [selectedViewer]);
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -479,10 +515,10 @@ function App() {
           <section className="ticker" aria-label="Areas of interest"><div className="ticker-track">{Array.from({length: 2}, (_, i) => <div className="ticker-group" key={i}><span>DATA ANALYTICS</span><b>✳</b><span>PREDICTIVE MODELLING</span><b>✳</b><span>PROBLEM SOLVING</span><b>✳</b><span>CONTINUOUS LEARNING</span><b>✳</b></div>)}</div></section>
 
           <section id="story" className="story-section section-wrap section-space">
-            <div className="section-heading reveal"><SectionLabel index="01">THE BEGINNING</SectionLabel><h2>Learning to see<br/><em>the signal in the noise.</em></h2></div>
+            <div className="section-heading reveal"><SectionLabel index="01">{selectedViewer?.storySectionTitle || "THE BEGINNING"}</SectionLabel><h2>{selectedViewer?.id === "analyst" ? <>Find the pattern.<br/><em>Explain what it means.</em></> : selectedViewer?.id === "scientist" ? <>Ask a better question.<br/><em>Test the idea.</em></> : selectedViewer?.id === "recruiter" ? <>The foundation<br/><em>behind the work.</em></> : <>Learning to see<br/><em>the signal in the noise.</em></>}</h2></div>
             <div className="story-grid">
-              <div className="story-intro reveal"><span className="big-quote">“</span><p>I’m an MCA student at <strong>MIT Manipal</strong> with a growing interest in data analytics, predictive modelling and the questions that data can help answer.</p></div>
-              <div className="story-detail reveal"><p>My journey began with computer applications, where strong academic foundations and hands-on projects pushed me to explore beyond the syllabus. Today, I’m building towards a career that starts with data analysis and grows into data science.</p><p>I enjoy understanding how things work: asking better questions, breaking problems into smaller pieces, and building something useful from what I learn.</p><a className="inline-link" href={LINKEDIN} target="_blank" rel="noreferrer">A little more about my journey <ArrowUpRight size={15}/></a></div>
+              <div className="story-intro reveal"><span className="big-quote">“</span><p>{selectedViewer?.storyLead || "I’m an MCA student at MIT Manipal with a growing interest in data analytics, predictive modelling and the questions that data can help answer."}</p></div>
+              <div className="story-detail reveal"><p>{selectedViewer?.storyDetail || "My journey began with computer applications, where strong academic foundations and hands-on projects pushed me to explore beyond the syllabus. Today, I’m building towards a career that starts with data analysis and grows into data science."}</p><p>{selectedViewer?.storyDetailExtra || "I enjoy understanding how things work: asking better questions, breaking problems into smaller pieces, and building something useful from what I learn."}</p><a className="inline-link" href={LINKEDIN} target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={15}/></a></div>
             </div>
             <div className="journey-strip reveal">
               <div className="journey-item"><span>01 / FOUNDATION</span><strong>BCA</strong><p>Computer applications</p><small>CGPA 9.6 / 10</small></div>
@@ -542,9 +578,9 @@ function App() {
           </section>
 
           <section id="toolkit" className="toolkit-section section-wrap section-space">
-            <div className="work-heading reveal"><div><SectionLabel index="04">THE TOOLKIT</SectionLabel><h2>What I work <em>with.</em></h2></div><p>A practical toolkit I’m developing through coursework and projects. I’d rather show what I use than claim expertise I haven’t earned.</p></div>
+            <div className="work-heading reveal"><div><SectionLabel index="04">THE TOOLKIT</SectionLabel><h2>{selectedViewer?.toolkitTitle || <>What I work <em>with.</em></>}</h2></div><p>{selectedViewer?.toolkitIntro || "A practical toolkit I’m developing through coursework and projects. I’d rather show what I use than claim expertise I haven’t earned."}</p></div>
             <div className="toolkit-grid">
-              {skills.map(({ name, detail, level, icon: Icon }, index) => <div className="skill-card reveal" key={name} style={{ transitionDelay: `${index * 55}ms` }}><div className="skill-top"><Icon size={19}/><span>{level}</span></div><strong>{name}</strong><p>{detail}</p></div>)}
+              {displayedSkills.map(({ name, detail, level, icon: Icon }, index) => <div className="skill-card reveal" key={name} style={{ transitionDelay: `${index * 55}ms` }}><div className="skill-top"><Icon size={19}/><span>{level}</span></div><strong>{name}</strong><p>{detail}</p></div>)}
             </div>
             <div className="toolkit-note reveal"><Sparkles size={16}/><span>Currently deepening my foundations in data analysis, statistics and machine learning.</span></div>
           </section>
