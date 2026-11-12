@@ -113,10 +113,25 @@ const VIEWER_PROFILES = [
     id: "recruiter",
     name: "Recruiter",
     symbol: "K",
-    descriptor: "Background · Projects · Achievements",
-    badge: "THE OVERVIEW",
-    intro: "A focused look at my education, selected work and achievements.",
-    kicker: "RECRUITER VIEW"
+    descriptor: "Education · Projects · Achievements",
+    badge: "RECRUITER SNAPSHOT",
+    kicker: "CANDIDATE OVERVIEW",
+    heroLineOne: "A strong foundation.",
+    heroLineTwo: "Built through projects.",
+    intro: "MCA student at MIT Manipal with a computer applications background, hands-on project experience and a growing focus on data.",
+    cta: "Review my work",
+    defaultFilter: "All",
+    lensTitle: "The essentials, at a glance.",
+    lensIntro: "A quick snapshot of my education, practical work and recognition.",
+    workLabel: "SELECTED EXPERIENCE",
+    workTitle: "Evidence of learning.",
+    workIntro: "A cross-section of the projects I have completed and the research I am currently developing.",
+    projectOrder: ["weather", "retirement", "helpdesk", "aircanvas", "wumpus", "foodfest"],
+    focus: [
+      { label: "CURRENT STUDY", value: "MCA", detail: "MIT Manipal · School of Computer Engineering" },
+      { label: "ACADEMIC FOUNDATION", value: "BCA · 9.6 CGPA", detail: "Computer Applications" },
+      { label: "RECOGNITION", value: "1st + 2nd prize", detail: "Inter-college competitions" }
+    ]
   },
   {
     id: "analyst",
@@ -124,28 +139,73 @@ const VIEWER_PROFILES = [
     symbol: "01",
     descriptor: "SQL · Python · Data projects",
     badge: "DATA & INSIGHT",
-    intro: "Explore the projects where I work with data, structure information and build useful applications.",
-    kicker: "DATA ANALYST VIEW"
+    kicker: "DATA ANALYST VIEW",
+    heroLineOne: "Finding patterns.",
+    heroLineTwo: "Making them useful.",
+    intro: "Explore my work with data, from Python-based applications and structured information to a research project on financial prediction.",
+    cta: "Explore data projects",
+    defaultFilter: "Data",
+    lensTitle: "From raw information to useful insight.",
+    lensIntro: "This view prioritises the tools and projects closest to an entry-level data analyst path.",
+    workLabel: "DATA PROJECTS",
+    workTitle: "Working with data.",
+    workIntro: "Start with the data-focused projects: a weather dashboard and a predictive retirement-fund research study.",
+    projectOrder: ["retirement", "weather", "helpdesk", "aircanvas", "wumpus", "foodfest"],
+    focus: [
+      { label: "CORE TOOLS", value: "SQL · Python · Excel", detail: "Building analysis foundations" },
+      { label: "DATA APPLICATION", value: "Weather Dashboard", detail: "API data · comparisons · history" },
+      { label: "RESEARCH", value: "Retirement estimation", detail: "Synthetic data · predictive modelling" }
+    ]
   },
   {
     id: "scientist",
     name: "Data Scientist",
     symbol: "∑",
-    descriptor: "Research · Models · Machine learning",
+    descriptor: "Predictive analytics · AI · Research",
     badge: "MODELS & RESEARCH",
-    intro: "A closer look at my research direction and early exploration of predictive analytics.",
-    kicker: "DATA SCIENCE VIEW"
+    kicker: "DATA SCIENCE VIEW",
+    heroLineOne: "Questions become",
+    heroLineTwo: "models to explore.",
+    intro: "A research-led view of my work, with predictive analytics, an ongoing financial estimation study and early AI experiments.",
+    cta: "Explore research",
+    defaultFilter: "All",
+    lensTitle: "Exploring how systems learn.",
+    lensIntro: "A view into my current research direction and the AI-related projects that have shaped my interest.",
+    workLabel: "RESEARCH & AI",
+    workTitle: "Beyond the dashboard.",
+    workIntro: "The projects are ordered to foreground predictive modelling, natural language processing and computer vision.",
+    projectOrder: ["retirement", "helpdesk", "aircanvas", "weather", "wumpus", "foodfest"],
+    focus: [
+      { label: "RESEARCH DIRECTION", value: "Predictive analytics", detail: "Retirement-fund estimation study" },
+      { label: "NATURAL LANGUAGE", value: "NLP chatbot", detail: "College helpdesk assistant" },
+      { label: "COMPUTER VISION", value: "Air Canvas", detail: "Hand tracking · gesture interaction" }
+    ]
   },
   {
     id: "explorer",
     name: "Explorer",
     symbol: "✳",
-    descriptor: "The complete journey",
+    descriptor: "Web · Creative coding · Experiments",
     badge: "THE FULL STORY",
-    intro: "The full story — what I have built, what I am learning and where I am headed.",
-    kicker: "EXPLORER VIEW"
+    kicker: "EXPLORER VIEW",
+    heroLineOne: "Curiosity takes",
+    heroLineTwo: "many forms.",
+    intro: "From interactive web projects to computer vision and data experiments, this is the broader collection of things I have explored by building.",
+    cta: "Browse experiments",
+    defaultFilter: "All",
+    lensTitle: "Different problems. Different tools.",
+    lensIntro: "A wider tour through interactive projects, creative experiments and data-driven applications.",
+    workLabel: "THE COLLECTION",
+    workTitle: "A little of everything.",
+    workIntro: "Explore the full collection, from interactive browser projects and creative computing to analytics and research.",
+    projectOrder: ["wumpus", "foodfest", "aircanvas", "helpdesk", "weather", "retirement"],
+    focus: [
+      { label: "INTERACTIVE WEB", value: "Hunt the Wumpus", detail: "React · TypeScript · browser game" },
+      { label: "CREATIVE COMPUTING", value: "Air Canvas", detail: "Real-time hand tracking" },
+      { label: "DATA EXPERIMENTS", value: "Weather Dashboard", detail: "APIs · comparisons · history" }
+    ]
   }
-];
+];;
 
 function BrandMark() {
   return <a className="brand" href="#top" aria-label="Kishan home"><span className="brand-symbol">K<span>.</span></span><span className="brand-word">KISHAN SALIAN</span></a>;
