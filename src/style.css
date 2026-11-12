@@ -749,3 +749,166 @@ body:has(.profile-gate) { overflow: hidden; }
   .opening-atmosphere, .opening-progress i { animation: none !important; }
   .opening-progress i { transform: scaleX(1); }
 }
+
+
+/* ─────────────────────────────────────────────────────────────
+   THE SIGNAL — PROFILE-AWARE CONTENT + DESKTOP TYPOGRAPHY PASS
+   ───────────────────────────────────────────────────────────── */
+.profile-lens {
+  padding-top: 48px;
+  padding-bottom: 76px;
+}
+.profile-lens-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 44px;
+  margin-bottom: 25px;
+}
+.lens-overline {
+  color: var(--accent);
+  font: 8px var(--mono);
+  letter-spacing: .18em;
+}
+.profile-lens-heading h2 {
+  margin: 12px 0 0;
+  color: var(--paper);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  font-weight: 500;
+}
+.profile-lens-heading > p {
+  max-width: 390px;
+  margin: 0 0 3px;
+  color: #989198;
+  font-size: 12px;
+  line-height: 1.85;
+}
+.profile-lens-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+.lens-card {
+  position: relative;
+  min-width: 0;
+  min-height: 145px;
+  padding: 22px 23px 19px;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+}
+.lens-card-index {
+  position: absolute;
+  right: 19px;
+  top: 17px;
+  color: #69636a;
+  font: 8px var(--mono);
+}
+.lens-card-label {
+  display: block;
+  color: #91878d;
+  font: 8px var(--mono);
+  letter-spacing: .12em;
+}
+.lens-card strong {
+  display: block;
+  margin-top: 20px;
+  padding-right: 12px;
+  color: #eee8e2;
+  font-size: clamp(16px, 1.5vw, 21px);
+  line-height: 1.25;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+.lens-card p {
+  margin: 7px 0 0;
+  color: #8e878d;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.project-grid-item {
+  min-width: 0;
+  opacity: 1;
+  animation: projectCardEnter .55s both;
+}
+.project-grid-featured { grid-column: 1 / -1; }
+.project-grid-featured > .project-card { width: 100%; }
+@keyframes projectCardEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desktop readability: increase body copy and controls without changing
+   the mobile scale, which already tested well. */
+@media (min-width: 951px) {
+  .section-wrap { width: min(1240px, calc(100% - 120px)); }
+  .section-space { padding-block: 145px; }
+  .hero { min-height: 830px; }
+  .hero h1 { font-size: clamp(82px, 7.5vw, 110px); }
+  .hero-kicker { font-size: 10px; margin-bottom: 38px; }
+  .hero-description { max-width: 500px; font-size: 16px; line-height: 1.95; }
+  .hero-actions .button { font-size: 12px; padding: 16px 21px; }
+  .hero-footnote { font-size: 9px; }
+  .section-label { font-size: 10px; }
+  .section-heading h2, .work-heading h2 { font-size: clamp(52px, 5vw, 74px); }
+  .story-grid { gap: 90px; margin-top: 72px; }
+  .story-intro p { max-width: 510px; font-size: 26px; }
+  .story-detail p { font-size: 15px; line-height: 2; }
+  .inline-link { font-size: 12px; }
+  .journey-strip { margin-top: 105px; padding-block: 35px; }
+  .journey-item > span { font-size: 9px; }
+  .journey-item strong { font-size: 28px; }
+  .journey-item p { font-size: 12px; }
+  .journey-item small { font-size: 10px; }
+  .work-heading > p { max-width: 390px; font-size: 14px; line-height: 1.95; }
+  .filter-row { margin-top: 60px; margin-bottom: 30px; }
+  .filter-row button { gap: 14px; padding: 11px 17px; font-size: 12px; }
+  .filter-row button span { font-size: 9px; }
+  .project-grid { gap: 27px; }
+  .project-visual { height: 305px; }
+  .project-featured .project-visual { min-height: 385px; }
+  .project-card-content { padding: 27px 29px 25px; }
+  .project-featured .project-card-content { padding: 48px; }
+  .project-meta { font-size: 9px; }
+  .project-card h3 { font-size: 27px; }
+  .project-featured h3 { font-size: 41px; }
+  .project-card-content > p { font-size: 16px; }
+  .project-card-bottom { font-size: 9px; margin-top: 34px; }
+  .project-featured .project-card-bottom { margin-top: 50px; }
+  .research-card { margin-top: 68px; }
+  .research-main { padding: 52px; }
+  .research-description { max-width: 470px; font-size: 14px; }
+  .research-side { padding: 42px; }
+  .chart-legend { font-size: 9px; }
+  .chart-note { font-size: 8px; }
+  .skill-card { min-height: 175px; padding: 24px; }
+  .skill-card strong { font-size: 19px; }
+  .skill-card p { font-size: 11px; }
+  .beyond-card { min-height: 245px; padding: 30px; }
+  .beyond-card h3 { font-size: 23px; }
+  .beyond-card > p:last-child { font-size: 12px; }
+  .contact-content > p { font-size: 13px; }
+  .contact-email { font-size: 23px; }
+  .work-footer { font-size: 9px; }
+  .work-footer a { font-size: 12px; }
+}
+@media (min-width: 701px) and (max-width: 950px) {
+  .profile-lens { padding-top: 40px; padding-bottom: 58px; }
+  .profile-lens-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .profile-lens-cards { gap: 9px; }
+  .lens-card { padding: 18px 16px; }
+  .lens-card strong { font-size: 16px; }
+}
+@media (max-width: 700px) {
+  .profile-lens { padding-top: 27px; padding-bottom: 53px; }
+  .profile-lens-heading { display: block; margin-bottom: 18px; }
+  .profile-lens-heading h2 { font-size: 26px; }
+  .profile-lens-heading > p { margin-top: 12px; font-size: 10px; }
+  .profile-lens-cards { grid-template-columns: 1fr; gap: 8px; }
+  .lens-card { min-height: 108px; padding: 16px 18px; }
+  .lens-card strong { margin-top: 14px; font-size: 17px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-grid-featured { grid-column: auto; }
+}
