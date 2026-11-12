@@ -287,6 +287,8 @@ function App() {
 
   const chooseViewer = (profile) => {
     setSelectedViewer(profile);
+    // Data-focused viewers land on the projects most relevant to their chosen path.
+    setActiveFilter(profile.id === "analyst" || profile.id === "scientist" ? "Data" : "All");
     setProfileTransition(true);
     window.setTimeout(() => setShowPortfolio(true), 620);
   };
