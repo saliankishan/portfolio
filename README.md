@@ -1,4 +1,4 @@
-# Kishan | The Signal
+# Kishan — Beyond the Build
 
 A cinematic, Netflix-inspired portfolio for Kishan D Salian, with an animated opening sequence, a viewer profile selector, and profile-tailored content. Built with React and Vite.
 
@@ -33,7 +33,7 @@ In the repository, open **Settings → Pages** and set **Build and deployment �
 
 ## Personalise
 
-Update project details, skills and contact links in `src/main.jsx`. Replace the GitHub avatar in the hero with a preferred portrait when ready.
+Update project details, skills and contact links in `src/main.jsx`. The hero portrait is stored at `public/images/kishan-portrait.webp`.
 
 ---
 
