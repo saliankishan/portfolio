@@ -274,9 +274,9 @@ function ProjectVisual({ kind }) {
   );
 }
 
-function ProjectCard({ project, onOpen }) {
+function ProjectCard({ project, onOpen, featured = false }) {
   return (
-    <button className={`project-card ${project.featured ? "project-featured" : ""}`} onClick={() => onOpen(project)} aria-label={`Open ${project.title} details`}>
+    <button className={`project-card ${featured ? "project-featured" : ""}`} onClick={() => onOpen(project)} aria-label={`Open ${project.title} details`}>
       <ProjectVisual kind={project.visual} />
       <div className="project-card-content">
         <div className="project-meta"><span>{project.category}</span><span>{project.number}</span></div>
@@ -495,12 +495,19 @@ function App() {
 
           <section id="work" className="work-section section-space">
             <div className="section-wrap">
-              <div className="work-heading reveal"><div><SectionLabel index="02">{selectedViewer?.workLabel || "SELECTED WORK"}</SectionLabel><h2>{selectedViewer?.workTitle || "Things I’ve"} <em>{selectedViewer ? "" : "made."}</em></h2></div><p>{selectedViewer?.workIntro || "A collection of projects, experiments and questions I’ve explored through code. Each one taught me something different."}</p></div>
+              <div className="work-heading reveal"><div><SectionLabel index="02">{selectedViewer?.workLabel || "SELECTED WORK"}</SectionLabel><h2>{selectedViewer?.workTitle || <>Things I’ve <em>made.</em></>}</h2></div><p>{selectedViewer?.workIntro || "A collection of projects, experiments and questions I’ve explored through code. Each one taught me something different."}</p></div>
               <div className="filter-row reveal" role="group" aria-label="Filter projects">
                 {["All", "Data", "AI", "Web"].map((filter) => <button key={filter} className={activeFilter === filter ? "filter-active" : ""} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === "All" ? projects.length : projects.filter((p) => p.type === filter.toLowerCase()).length.toString().padStart(2, "0")}</span></button>)}
               </div>
               <div className="project-grid" key={activeFilter}>
-                {filteredProjects.map((project, index) => <div className="project-grid-item" key={project.id} style={{ animationDelay: `${index * 70}ms` }}><ProjectCard project={project} onOpen={setSelectedProject}/></div>)}
+                {filteredProjects.map((project, index) => {
+                  const featured = activeFilter === "All" && project.featured;
+                  return (
+                    <div className={`project-grid-item ${featured ? "project-grid-featured" : ""}`} key={project.id} style={{ animationDelay: `${index * 70}ms` }}>
+                      <ProjectCard project={project} onOpen={setSelectedProject} featured={featured}/>
+                    </div>
+                  );
+                })}
               </div>
               <div className="work-footer reveal"><span>MORE EXPERIMENTS WILL FIND THEIR WAY HERE.</span><a href={GITHUB} target="_blank" rel="noreferrer">Explore all repositories <ArrowUpRight size={15}/></a></div>
             </div>
