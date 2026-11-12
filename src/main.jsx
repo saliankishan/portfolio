@@ -252,7 +252,7 @@ function ProfileGate({ onSelect, exiting }) {
         <span className="profile-gate-edition">A PERSONAL PORTFOLIO EXPERIENCE</span>
       </header>
       <div className="profile-gate-content">
-        <p className="profile-gate-overline">THE SIGNAL / 2026</p>
+        <p className="profile-gate-overline">BEYOND THE BUILD / 2026</p>
         <h1>Who’s watching?</h1>
         <p className="profile-gate-subtitle">Choose your perspective. The story is the same — the first stop is yours.</p>
         <div className="profile-options">
@@ -429,14 +429,14 @@ function App() {
   return (
     <>
       {introVisible && (
-        <section className="cinematic-opening" aria-label="Kishan The Signal opening sequence">
+        <section className="cinematic-opening" aria-label="Kishan Beyond the Build opening sequence">
           <div className="opening-atmosphere" />
-          <div className="opening-frame opening-frame-top"><span>KISHAN / THE SIGNAL</span><span>A PORTFOLIO EXPERIENCE</span></div>
+          <div className="opening-frame opening-frame-top"><span>KISHAN / BEYOND THE BUILD</span><span>A PORTFOLIO EXPERIENCE</span></div>
           <div className="opening-center">
             <p className="opening-overline">A PERSONAL PORTFOLIO EXPERIENCE</p>
-            <div className="opening-title"><span>KISHAN</span><em>THE SIGNAL</em></div>
+            <div className="opening-title"><span>KISHAN</span><em>BEYOND THE BUILD</em></div>
             <div className="opening-divider"><i /></div>
-            <p className="opening-tagline">EVERY DATA POINT HAS A STORY.</p>
+            <p className="opening-tagline">MORE THAN CODE. A STORY OF CURIOSITY, DATA & DISCOVERY.</p>
           </div>
           <div className="opening-frame opening-frame-bottom"><span>THINK. BUILD. LEARN.</span><span>EST. 2026</span></div>
           <button className="opening-skip" onClick={() => setIntroVisible(false)}>SKIP INTRO <ArrowUpRight size={14}/></button>
@@ -487,7 +487,7 @@ function App() {
                 </div>
                 <div className="art-bottomline"><span>THINK / BUILD / LEARN</span><span>FIG. 01</span></div>
               </div>
-              <div className="hero-stamp"><span>THE</span><strong>SIGNAL</strong><i>IS IN PROGRESS</i></div>
+              <div className="hero-stamp"><span>BEYOND</span><strong>THE BUILD</strong><i>MORE THAN CODE</i></div>
               <div className="hero-coordinate">MANIPAL<br/>INDIA</div>
             </div>
             <div className="hero-side-note">A PORTFOLIO IN PROGRESS — UPDATED AS I GROW</div>
@@ -515,7 +515,7 @@ function App() {
           <section className="ticker" aria-label="Areas of interest"><div className="ticker-track">{Array.from({length: 2}, (_, i) => <div className="ticker-group" key={i}><span>DATA ANALYTICS</span><b>✳</b><span>PREDICTIVE MODELLING</span><b>✳</b><span>PROBLEM SOLVING</span><b>✳</b><span>CONTINUOUS LEARNING</span><b>✳</b></div>)}</div></section>
 
           <section id="story" className="story-section section-wrap section-space">
-            <div className="section-heading reveal"><SectionLabel index="01">{selectedViewer?.storySectionTitle || "THE BEGINNING"}</SectionLabel><h2>{selectedViewer?.id === "analyst" ? <>Find the pattern.<br/><em>Explain what it means.</em></> : selectedViewer?.id === "scientist" ? <>Ask a better question.<br/><em>Test the idea.</em></> : selectedViewer?.id === "recruiter" ? <>The foundation<br/><em>behind the work.</em></> : <>Learning to see<br/><em>the signal in the noise.</em></>}</h2></div>
+            <div className="section-heading reveal"><SectionLabel index="01">{selectedViewer?.storySectionTitle || "THE BEGINNING"}</SectionLabel><h2>{selectedViewer?.id === "analyst" ? <>Find the pattern.<br/><em>Explain what it means.</em></> : selectedViewer?.id === "scientist" ? <>Ask a better question.<br/><em>Test the idea.</em></> : selectedViewer?.id === "recruiter" ? <>The foundation<br/><em>behind the work.</em></> : <>Learning to see<br/><em>the thinking behind the work.</em></>}</h2></div>
             <div className="story-grid">
               <div className="story-intro reveal"><span className="big-quote">“</span><p>{selectedViewer?.storyLead || "I’m an MCA student at MIT Manipal with a growing interest in data analytics, predictive modelling and the questions that data can help answer."}</p></div>
               <div className="story-detail reveal"><p>{selectedViewer?.storyDetail || "My journey began with computer applications, where strong academic foundations and hands-on projects pushed me to explore beyond the syllabus. Today, I’m building towards a career that starts with data analysis and grows into data science."}</p><p>{selectedViewer?.storyDetailExtra || "I enjoy understanding how things work: asking better questions, breaking problems into smaller pieces, and building something useful from what I learn."}</p><a className="inline-link" href={LINKEDIN} target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={15}/></a></div>
