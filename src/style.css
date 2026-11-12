@@ -912,3 +912,73 @@ body:has(.profile-gate) { overflow: hidden; }
   .project-grid { grid-template-columns: 1fr; }
   .project-grid-featured { grid-column: auto; }
 }
+
+
+/* The selected viewer changes the browsing route, not just the greeting. */
+.profile-mode-analyst {
+  --accent: #8abbb4;
+  --accent-bright: #b7ddd5;
+}
+.profile-mode-scientist {
+  --accent: #b49bd0;
+  --accent-bright: #d0bce8;
+}
+.profile-mode-explorer {
+  --accent: #c9a36f;
+  --accent-bright: #e6c28e;
+}
+.profile-mode-recruiter { --accent: #d58d82; --accent-bright: #f0a596; }
+
+@media (min-width: 701px) {
+  .profile-mode-recruiter.portfolio-unlocked main,
+  .profile-mode-analyst.portfolio-unlocked main,
+  .profile-mode-scientist.portfolio-unlocked main,
+  .profile-mode-explorer.portfolio-unlocked main {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-mode-recruiter main > .hero,
+  .profile-mode-analyst main > .hero,
+  .profile-mode-scientist main > .hero,
+  .profile-mode-explorer main > .hero { order: 1; }
+  .profile-mode-recruiter main > .profile-lens,
+  .profile-mode-analyst main > .profile-lens,
+  .profile-mode-scientist main > .profile-lens,
+  .profile-mode-explorer main > .profile-lens { order: 2; }
+  .profile-mode-recruiter main > .ticker,
+  .profile-mode-analyst main > .ticker,
+  .profile-mode-scientist main > .ticker,
+  .profile-mode-explorer main > .ticker { order: 3; }
+
+  /* Recruiter: establish the candidate story and proof points early. */
+  .profile-mode-recruiter main > #story { order: 4; }
+  .profile-mode-recruiter main > #work { order: 5; }
+  .profile-mode-recruiter main > #toolkit { order: 6; }
+  .profile-mode-recruiter main > .beyond-section { order: 7; }
+  .profile-mode-recruiter main > #research { order: 8; }
+  .profile-mode-recruiter main > #contact { order: 9; }
+
+  /* Analyst: put data projects and practical tools immediately after the intro. */
+  .profile-mode-analyst main > #work { order: 4; }
+  .profile-mode-analyst main > #toolkit { order: 5; }
+  .profile-mode-analyst main > #research { order: 6; }
+  .profile-mode-analyst main > #story { order: 7; }
+  .profile-mode-analyst main > .beyond-section { order: 8; }
+  .profile-mode-analyst main > #contact { order: 9; }
+
+  /* Scientist: lead with the research question and modelling direction. */
+  .profile-mode-scientist main > #research { order: 4; }
+  .profile-mode-scientist main > #work { order: 5; }
+  .profile-mode-scientist main > #toolkit { order: 6; }
+  .profile-mode-scientist main > #story { order: 7; }
+  .profile-mode-scientist main > .beyond-section { order: 8; }
+  .profile-mode-scientist main > #contact { order: 9; }
+
+  /* Explorer: keep the broad, original walk-through. */
+  .profile-mode-explorer main > #story { order: 4; }
+  .profile-mode-explorer main > #work { order: 5; }
+  .profile-mode-explorer main > #research { order: 6; }
+  .profile-mode-explorer main > #toolkit { order: 7; }
+  .profile-mode-explorer main > .beyond-section { order: 8; }
+  .profile-mode-explorer main > #contact { order: 9; }
+}
