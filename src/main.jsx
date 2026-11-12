@@ -108,8 +108,92 @@ const skills = [
   { name: "Flask", detail: "Python web applications", level: "In use", icon: Code2 }
 ];
 
+const VIEWER_PROFILES = [
+  {
+    id: "recruiter",
+    name: "Recruiter",
+    symbol: "K",
+    descriptor: "Background · Projects · Achievements",
+    badge: "THE OVERVIEW",
+    intro: "A focused look at my education, selected work and achievements.",
+    kicker: "RECRUITER VIEW"
+  },
+  {
+    id: "analyst",
+    name: "Data Analyst",
+    symbol: "01",
+    descriptor: "SQL · Python · Data projects",
+    badge: "DATA & INSIGHT",
+    intro: "Explore the projects where I work with data, structure information and build useful applications.",
+    kicker: "DATA ANALYST VIEW"
+  },
+  {
+    id: "scientist",
+    name: "Data Scientist",
+    symbol: "∑",
+    descriptor: "Research · Models · Machine learning",
+    badge: "MODELS & RESEARCH",
+    intro: "A closer look at my research direction and early exploration of predictive analytics.",
+    kicker: "DATA SCIENCE VIEW"
+  },
+  {
+    id: "explorer",
+    name: "Explorer",
+    symbol: "✳",
+    descriptor: "The complete journey",
+    badge: "THE FULL STORY",
+    intro: "The full story — what I have built, what I am learning and where I am headed.",
+    kicker: "EXPLORER VIEW"
+  }
+];
+
 function BrandMark() {
   return <a className="brand" href="#top" aria-label="Kishan home"><span className="brand-symbol">K<span>.</span></span><span className="brand-word">KISHAN SALIAN</span></a>;
+}
+
+function ProfileGate({ onSelect, exiting }) {
+  return (
+    <section className={`profile-gate ${exiting ? "profile-gate-exit" : ""}`} aria-label="Choose a viewing profile">
+      <div className="profile-gate-backdrop" aria-hidden="true">
+        <div className="profile-backdrop-glow glow-left" />
+        <div className="profile-backdrop-glow glow-right" />
+        <div className="profile-backdrop-grid" />
+      </div>
+      <header className="profile-gate-header">
+        <div className="streaming-brand"><span className="streaming-mark">K</span><span>KISHAN <i>ORIGINALS</i></span></div>
+        <span className="profile-gate-edition">A PERSONAL PORTFOLIO EXPERIENCE</span>
+      </header>
+      <div className="profile-gate-content">
+        <p className="profile-gate-overline">THE JOURNEY / 2026</p>
+        <h1>Who’s watching?</h1>
+        <p className="profile-gate-subtitle">Choose your perspective. The story is the same — the first stop is yours.</p>
+        <div className="profile-options">
+          {VIEWER_PROFILES.map((profile, index) => (
+            <button
+              className={`profile-option profile-option-${profile.id}`}
+              key={profile.id}
+              onClick={() => onSelect(profile)}
+              aria-label={`Continue as ${profile.name}`}
+            >
+              <span className="profile-avatar">
+                <span className="profile-avatar-halo" />
+                <span className="profile-avatar-symbol">{profile.symbol}</span>
+                <span className="profile-avatar-corner">{String(index + 1).padStart(2, "0")}</span>
+              </span>
+              <span className="profile-option-name">{profile.name}</span>
+              <span className="profile-option-description">{profile.descriptor}</span>
+            </button>
+          ))}
+        </div>
+        <p className="profile-gate-footnote">ONE JOURNEY. FOUR WAYS TO EXPLORE.</p>
+      </div>
+      <footer className="profile-gate-footer">
+        <span>© KISHAN D SALIAN</span>
+        <span>SELECT A PROFILE TO ENTER <i>↗</i></span>
+        <span>BUILT WITH CURIOSITY</span>
+      </footer>
+    </section>
+  );
 }
 
 function SectionLabel({ index, children }) {
@@ -184,13 +268,36 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [introVisible, setIntroVisible] = useState(true);
+  const [selectedViewer, setSelectedViewer] = useState(null);
+  const [profileTransition, setProfileTransition] = useState(false);
+  const [showPortfolio, setShowPortfolio] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIntroVisible(false), 1500);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = window.setTimeout(() => setIntroVisible(false), reducedMotion ? 80 : 3300);
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => { window.clearTimeout(timer); window.removeEventListener("scroll", onScroll); };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = showPortfolio ? "" : "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, [showPortfolio]);
+
+  const chooseViewer = (profile) => {
+    setSelectedViewer(profile);
+    setProfileTransition(true);
+    window.setTimeout(() => setShowPortfolio(true), 620);
+  };
+
+  const switchProfile = () => {
+    window.scrollTo(0, 0);
+    setMenuOpen(false);
+    setProfileTransition(false);
+    setShowPortfolio(false);
+    setIntroVisible(false);
+  };
 
   useEffect(() => {
     const nodes = document.querySelectorAll(".reveal");
@@ -211,10 +318,23 @@ function App() {
 
   return (
     <>
-      <div className={`intro-screen ${introVisible ? "" : "intro-done"}`} aria-hidden="true">
-        <div className="intro-logo">K<span>.</span></div><div className="intro-line" /><p>AN ONGOING STORY</p>
-      </div>
-      <div className="site-shell" id="top">
+      {introVisible && (
+        <section className="cinematic-opening" aria-label="Kishan The Journey opening sequence">
+          <div className="opening-atmosphere" />
+          <div className="opening-frame opening-frame-top"><span>KISHAN ORIGINALS</span><span>AN ONGOING STORY</span></div>
+          <div className="opening-center">
+            <p className="opening-overline">A PERSONAL PORTFOLIO EXPERIENCE</p>
+            <div className="opening-title"><span>KISHAN</span><em>THE JOURNEY</em></div>
+            <div className="opening-divider"><i /></div>
+            <p className="opening-tagline">EVERY DATA POINT HAS A STORY.</p>
+          </div>
+          <div className="opening-frame opening-frame-bottom"><span>THINK. BUILD. LEARN.</span><span>EST. 2026</span></div>
+          <button className="opening-skip" onClick={() => setIntroVisible(false)}>SKIP INTRO <ArrowUpRight size={14}/></button>
+          <div className="opening-progress"><i /></div>
+        </section>
+      )}
+      {!introVisible && !showPortfolio && <ProfileGate onSelect={chooseViewer} exiting={profileTransition} />}
+      <div className={`site-shell ${showPortfolio ? "portfolio-unlocked" : "portfolio-locked"}`} id="top">
         <div className="grain" aria-hidden="true" />
         <header className={`site-header ${scrolled ? "header-scrolled" : ""}`}>
           <div className="header-inner">
@@ -225,6 +345,10 @@ function App() {
               <a href="#research" onClick={closeMenu}>Research</a>
               <a href="#toolkit" onClick={closeMenu}>Toolkit</a>
               <a className="nav-contact" href="#contact" onClick={closeMenu}>Let’s talk <ArrowUpRight size={14}/></a>
+              <button className="profile-switcher" onClick={switchProfile} aria-label="Switch viewing profile">
+                <span>{selectedViewer?.symbol || "K"}</span>
+                <small>{selectedViewer?.name || "PROFILE"} <i>⌄</i></small>
+              </button>
             </nav>
             <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"}>{menuOpen ? <X/> : <Menu/>}</button>
           </div>
@@ -233,9 +357,9 @@ function App() {
         <main>
           <section className="hero section-wrap">
             <div className="hero-copy">
-              <div className="hero-kicker"><span className="status-pulse" /> MCA STUDENT · MIT MANIPAL <span className="kicker-rule" /> INDIA</div>
+              <div className="hero-kicker"><span className="status-pulse" /> {selectedViewer?.kicker || "MCA STUDENT · MIT MANIPAL"} <span className="kicker-rule" /> INDIA</div>
               <h1>Curiosity is<br/>my <em>starting point.</em></h1>
-              <p className="hero-description">I’m Kishan — learning to turn data into understanding, and understanding into better decisions.</p>
+              <p className="hero-description">{selectedViewer?.intro || "I’m Kishan — learning to turn data into understanding, and understanding into better decisions."}</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#work">Explore my work <ArrowUpRight size={16}/></a>
                 <a className="button button-quiet" href="#story">Get to know me <ArrowDown size={15}/></a>
