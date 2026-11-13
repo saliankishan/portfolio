@@ -583,7 +583,7 @@ body:has(.profile-gate) { overflow: hidden; }
   font-size: 20px;
   letter-spacing: -.1em;
 }
-.profile-gate-edition { color: #777078; font: 8px var(--mono); letter-spacing: .16em; }
+.profile-gate-edition { color: #89838a; font: 8px var(--mono); letter-spacing: .16em; }
 .profile-gate-content {
   flex: 1;
   width: min(100%, 1100px);
@@ -682,7 +682,7 @@ body:has(.profile-gate) { overflow: hidden; }
 .profile-option:focus-visible .profile-option-name { color: var(--accent-bright); }
 .profile-option:focus-visible { outline: none; }
 .profile-option:focus-visible .profile-avatar { outline: 2px solid var(--paper); outline-offset: 5px; }
-.profile-gate-footnote { margin: 45px 0 0; color: #777078; font: 7px var(--mono); letter-spacing: .22em; }
+.profile-gate-footnote { margin: 45px 0 0; color: #89838a; font: 7px var(--mono); letter-spacing: .22em; }
 .profile-gate-footer {
   min-height: 55px;
   padding: 0 clamp(25px, 6vw, 90px);
