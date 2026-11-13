@@ -1126,3 +1126,88 @@ body:has(.profile-gate) { overflow: hidden; }
     letter-spacing: .06em;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE LAYOUT FIXES — hero artwork and education timeline
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  /* Align the location caption with the artwork frame, not the screen edge. */
+  .hero-coordinate {
+    left: 8%;
+    bottom: 3px;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  /* The floating stamp intentionally overlaps the frame, but should not
+     obscure the frame's figure number on narrow screens. */
+  .hero-stamp {
+    width: 108px;
+    height: 108px;
+    right: -2px;
+    bottom: 14px;
+  }
+
+  .hero-stamp span {
+    font-size: 10px;
+  }
+
+  .hero-stamp strong {
+    font-size: 15px;
+  }
+
+  .hero-stamp i {
+    max-width: 82px;
+    font-size: 9px;
+    line-height: 1.2;
+    letter-spacing: .05em;
+    text-align: center;
+  }
+
+  .art-bottomline span:last-child {
+    display: none;
+  }
+
+  /* Stack the timeline connectors vertically; don't rotate the whole
+     horizontal flex row, which was pushing arrows into the next item. */
+  .journey-strip {
+    gap: 12px;
+  }
+
+  .journey-connector {
+    width: 100%;
+    height: 26px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    transform: none;
+    transform-origin: center;
+  }
+
+  .journey-connector i {
+    width: 1px;
+    height: 6px;
+    flex: 0 0 6px;
+  }
+
+  .journey-connector svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    transform: rotate(90deg);
+  }
+
+  .journey-item {
+    padding: 2px 0;
+  }
+
+  .journey-item strong {
+    letter-spacing: -.02em;
+  }
+}
+
