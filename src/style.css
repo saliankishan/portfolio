@@ -984,3 +984,145 @@ body:has(.profile-gate) { overflow: hidden; }
   .profile-mode-explorer main > .beyond-section { order: 8; }
   .profile-mode-explorer main > #contact { order: 9; }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   ACCESSIBILITY PASS — readable contrast and micro-typography
+   Keeps the dark cinematic palette while making supporting text
+   easier to read across the full site.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --muted: #a29ca3;
+}
+
+/* Supporting text that was too close to the dark background. */
+.hero-footnote,
+.art-topline,
+.art-bottomline,
+.hero-coordinate,
+.hero-side-note,
+.section-label span,
+.journey-item > span,
+.journey-connector,
+.filter-row button span,
+.visual-index,
+.project-meta,
+.project-card-bottom,
+.work-footer,
+.research-overline,
+.research-chart-title,
+.chart-y-label,
+.chart-x-labels,
+.chart-note,
+.skill-top span,
+.beyond-number,
+.beyond-card .eyebrow,
+.contact-top > span,
+.contact-bottom > span,
+.profile-gate-edition,
+.profile-option-description,
+.profile-gate-footnote,
+.profile-gate-footer,
+.lens-card-index,
+.lens-card-label,
+.lens-card p,
+.opening-frame {
+  color: #a29ca3;
+}
+
+/* Increase the small metadata labels to a readable minimum size. */
+.intro-screen p,
+.brand-word,
+.hero-kicker,
+.hero-footnote,
+.art-topline,
+.art-bottomline,
+.orbit-label,
+.hero-stamp span,
+.hero-stamp i,
+.hero-coordinate,
+.hero-side-note,
+.section-label,
+.journey-item > span,
+.journey-item small,
+.filter-row button span,
+.visual-index,
+.project-meta,
+.project-card-bottom,
+.work-footer,
+.visual-core span,
+.weather-caption,
+.canvas-tag,
+.wumpus-title,
+.food-caption,
+.research-status,
+.research-overline,
+.research-tags span,
+.tag-list span,
+.research-chart-title,
+.chart-legend,
+.chart-y-label,
+.chart-x-labels,
+.chart-note,
+.skill-top span,
+.beyond-number,
+.beyond-card .eyebrow,
+.contact-top > span,
+.contact-bottom > span,
+.modal-copy .eyebrow,
+.status-note,
+.ticker-group span,
+.profile-gate-edition,
+.profile-gate-overline,
+.profile-option-description,
+.profile-gate-footnote,
+.profile-gate-footer,
+.profile-switcher small,
+.profile-avatar-corner,
+.opening-frame,
+.opening-tagline,
+.opening-overline,
+.opening-skip,
+.lens-overline,
+.lens-card-index,
+.lens-card-label {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+/* Relax tracking on long micro-labels so they remain readable and fit. */
+.profile-gate-overline,
+.profile-gate-footnote,
+.profile-gate-footer,
+.profile-gate-edition,
+.opening-frame,
+.opening-tagline,
+.opening-overline,
+.hero-footnote,
+.art-topline,
+.art-bottomline {
+  letter-spacing: .12em;
+}
+
+/* Keep the compact profile chooser comfortable on narrow screens. */
+@media (max-width: 700px) {
+  .profile-gate-edition,
+  .profile-gate-footer,
+  .profile-gate-footnote,
+  .profile-gate-overline,
+  .profile-option-description,
+  .opening-frame,
+  .opening-tagline,
+  .opening-overline,
+  .opening-skip,
+  .profile-switcher small {
+    font-size: 10px;
+  }
+
+  .profile-option-description {
+    line-height: 1.5;
+  }
+
+  .profile-gate-footer {
+    letter-spacing: .06em;
+  }
+}
