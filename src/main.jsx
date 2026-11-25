@@ -108,6 +108,16 @@ const skills = [
   { name: "Flask", detail: "Python web applications", level: "In use", icon: Code2 }
 ];
 
+const webSkills = [
+  { name: "HTML & CSS", detail: "Page structure & responsive layouts", level: "In use", icon: Layers3 },
+  { name: "JavaScript", detail: "Browser interactions & application logic", level: "In use", icon: Code2 },
+  { name: "React", detail: "Component-based user interfaces", level: "In use", icon: Code2 },
+  { name: "TypeScript", detail: "Typed frontend development", level: "In use", icon: Code2 },
+  { name: "Flask", detail: "Python web applications", level: "In use", icon: Code2 },
+  { name: "SQL", detail: "Application data & SQLite", level: "In use", icon: Database },
+  { name: "Python", detail: "Backend logic & scripting", level: "In use", icon: Code2 }
+];
+
 const VIEWER_PROFILES = [
   {
     id: "recruiter",
@@ -172,34 +182,34 @@ const VIEWER_PROFILES = [
     ]
   },
   {
-    id: "scientist",
-    name: "Data Scientist",
-    symbol: "∑",
-    descriptor: "Predictive analytics · AI · Research",
-    badge: "MODELS & RESEARCH",
-    kicker: "DATA SCIENCE VIEW",
-    heroLineOne: "Questions become",
-    heroLineTwo: "models to explore.",
-    intro: "A research-led view of my work, with predictive analytics, an ongoing financial estimation study and early AI experiments.",
-    cta: "Explore research",
-    defaultFilter: "All",
-    lensTitle: "Exploring how systems learn.",
-    lensIntro: "A view into my current research direction and the AI-related projects that have shaped my interest.",
-    workLabel: "RESEARCH & AI",
-    workTitle: "Beyond the dashboard.",
-    workIntro: "The projects are ordered to foreground predictive modelling, natural language processing and computer vision.",
-    storyLead: "I’m interested in how data can be used to understand patterns, test assumptions and build predictive systems — not just produce charts.",
-    storyDetail: "My current MCA research, Retirement Fund Estimation Using Predictive Analytics, explores prediction using a synthetic financial dataset. I’m studying how a financial baseline can be compared with regression-based models.",
-    storyDetailExtra: "Alongside the research, projects involving natural language processing and computer vision have helped me explore different ways software can interpret information. I’m still building the statistics and machine-learning foundations behind this direction.",
-    toolkitTitle: "Foundations for modelling.",
-    toolkitIntro: "The programming and application tools I currently use, alongside the statistics and machine-learning knowledge I’m continuing to develop.",
-    skillOrder: ["Python", "SQL", "C++", "Flask", "Excel", "HTML & CSS"],
-    storySectionTitle: "RESEARCH DIRECTION",
-    projectOrder: ["retirement", "helpdesk", "aircanvas", "weather", "wumpus", "foodfest"],
+    id: "developer",
+    name: "Web Developer",
+    symbol: "</>",
+    descriptor: "React · JavaScript · Web applications",
+    badge: "WEB & INTERACTION",
+    kicker: "WEB DEVELOPER VIEW",
+    heroLineOne: "Ideas become",
+    heroLineTwo: "web experiences.",
+    intro: "I’m Kishan, an MCA student building interactive websites and web applications with React, JavaScript and Flask.",
+    cta: "Explore web projects",
+    defaultFilter: "Web",
+    lensTitle: "Built for the browser.",
+    lensIntro: "Explore my web development work, from interactive React interfaces to websites and Python-backed applications.",
+    workLabel: "WEB PROJECTS",
+    workTitle: "Interfaces you can explore.",
+    workIntro: "Start with Hunt the Wumpus and Vijaya Food Fest, then explore the full collection for Flask-backed applications and other experiments.",
+    storyLead: "I enjoy turning ideas into usable web experiences, combining interface design with the logic that makes an application work.",
+    storyDetail: "My projects include Hunt the Wumpus, a browser game built with React and TypeScript, and Vijaya Food Fest, a campus event website built with HTML, CSS and JavaScript. I have also used Flask and SQLite in the Weather Dashboard and College Helpdesk Chatbot.",
+    storyDetailExtra: "I’m strengthening my web development foundations through hands-on projects, with a focus on responsive layouts, clear interactions and connecting interfaces to application data.",
+    toolkitTitle: "The tools behind the experience.",
+    toolkitIntro: "The frontend and backend technologies I’m applying in my web projects, from browser fundamentals to React interfaces and Flask applications.",
+    skillOrder: ["HTML & CSS", "JavaScript", "React", "TypeScript", "Flask", "SQL", "Python"],
+    storySectionTitle: "THE WEB DEVELOPMENT PATH",
+    projectOrder: ["wumpus", "foodfest", "weather", "helpdesk", "aircanvas", "retirement"],
     focus: [
-      { label: "RESEARCH DIRECTION", value: "Predictive analytics", detail: "Retirement-fund estimation study" },
-      { label: "NATURAL LANGUAGE", value: "NLP chatbot", detail: "College helpdesk assistant" },
-      { label: "COMPUTER VISION", value: "Air Canvas", detail: "Hand tracking · gesture interaction" }
+      { label: "FRONTEND", value: "React · JavaScript", detail: "Interactive browser experiences" },
+      { label: "WEB FOUNDATIONS", value: "HTML · CSS", detail: "Page structure · responsive layouts" },
+      { label: "BACKEND", value: "Flask · SQLite", detail: "Python-backed web applications" }
     ]
   },
   {
@@ -415,15 +425,16 @@ function App() {
     });
   }, [activeFilter, selectedViewer]);
 
-  const heroTarget = selectedViewer?.id === "scientist" ? "#research" : "#work";
+  const isWebDeveloper = selectedViewer?.id === "developer";
+  const heroTarget = "#work";
   const displayedSkills = useMemo(() => {
     const order = selectedViewer?.skillOrder || [];
-    return [...skills].sort((a, b) => {
+    return [...(isWebDeveloper ? webSkills : skills)].sort((a, b) => {
       const aIndex = order.indexOf(a.name);
       const bIndex = order.indexOf(b.name);
       return (aIndex < 0 ? 999 : aIndex) - (bIndex < 0 ? 999 : bIndex);
     });
-  }, [selectedViewer]);
+  }, [selectedViewer, isWebDeveloper]);
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -483,7 +494,7 @@ function App() {
                   <div className="art-ring ring-a" /><div className="art-ring ring-b" />
                   <div className="portrait-disc"><img src="./images/kishan-portrait.png" alt="Kishan D Salian, portfolio portrait" fetchPriority="high" /></div>
                   <div className="portrait-cross cross-a">+</div><div className="portrait-cross cross-b">+</div>
-                  <div className="orbit-label label-a">ANALYSE</div><div className="orbit-label label-b">QUESTION</div>
+                  <div className="orbit-label label-a">{isWebDeveloper ? "DESIGN" : "ANALYSE"}</div><div className="orbit-label label-b">{isWebDeveloper ? "BUILD" : "QUESTION"}</div>
                 </div>
                 <div className="art-bottomline"><span>THINK / BUILD / LEARN</span><span>FIG. 01</span></div>
               </div>
@@ -512,10 +523,10 @@ function App() {
             </section>
           )}
 
-          <section className="ticker" aria-label="Areas of interest"><div className="ticker-track">{Array.from({length: 2}, (_, i) => <div className="ticker-group" key={i}><span>DATA ANALYTICS</span><b>✳</b><span>PREDICTIVE MODELLING</span><b>✳</b><span>PROBLEM SOLVING</span><b>✳</b><span>CONTINUOUS LEARNING</span><b>✳</b></div>)}</div></section>
+          <section className="ticker" aria-label="Areas of interest"><div className="ticker-track">{Array.from({length: 2}, (_, i) => <div className="ticker-group" key={i}><span>{isWebDeveloper ? "WEB DEVELOPMENT" : "DATA ANALYTICS"}</span><b>✳</b><span>{isWebDeveloper ? "RESPONSIVE INTERFACES" : "PREDICTIVE MODELLING"}</span><b>✳</b><span>PROBLEM SOLVING</span><b>✳</b><span>CONTINUOUS LEARNING</span><b>✳</b></div>)}</div></section>
 
           <section id="story" className="story-section section-wrap section-space">
-            <div className="section-heading reveal"><SectionLabel index="01">{selectedViewer?.storySectionTitle || "THE BEGINNING"}</SectionLabel><h2>{selectedViewer?.id === "analyst" ? <>Find the pattern.<br/><em>Explain what it means.</em></> : selectedViewer?.id === "scientist" ? <>Ask a better question.<br/><em>Test the idea.</em></> : selectedViewer?.id === "recruiter" ? <>The foundation<br/><em>behind the work.</em></> : <>Learning to see<br/><em>the thinking behind the work.</em></>}</h2></div>
+            <div className="section-heading reveal"><SectionLabel index="01">{selectedViewer?.storySectionTitle || "THE BEGINNING"}</SectionLabel><h2>{selectedViewer?.id === "analyst" ? <>Find the pattern.<br/><em>Explain what it means.</em></> : isWebDeveloper ? <>Build the interface.<br/><em>Bring it to life.</em></> : selectedViewer?.id === "recruiter" ? <>The foundation<br/><em>behind the work.</em></> : <>Learning to see<br/><em>the thinking behind the work.</em></>}</h2></div>
             <div className="story-grid">
               <div className="story-intro reveal"><span className="big-quote">“</span><p>{selectedViewer?.storyLead || "I’m an MCA student at MIT Manipal with a growing interest in data analytics, predictive modelling and the questions that data can help answer."}</p></div>
               <div className="story-detail reveal"><p>{selectedViewer?.storyDetail || "My journey began with computer applications, where strong academic foundations and hands-on projects pushed me to explore beyond the syllabus. Today, I’m building towards a career that starts with data analysis and grows into data science."}</p><p>{selectedViewer?.storyDetailExtra || "I enjoy understanding how things work: asking better questions, breaking problems into smaller pieces, and building something useful from what I learn."}</p><a className="inline-link" href={LINKEDIN} target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={15}/></a></div>
@@ -525,7 +536,7 @@ function App() {
               <div className="journey-connector"><i/><ArrowRight size={17}/><i/></div>
               <div className="journey-item journey-current"><span>02 / RIGHT NOW</span><strong>MCA</strong><p>MIT Manipal · School of Computer Engineering</p><small>Learning by building</small></div>
               <div className="journey-connector"><i/><ArrowRight size={17}/><i/></div>
-              <div className="journey-item"><span>03 / THE DIRECTION</span><strong>Data Science</strong><p>Analysis → modelling → insight</p><small>One step at a time</small></div>
+              <div className="journey-item"><span>03 / THE DIRECTION</span><strong>{isWebDeveloper ? "Web Development" : "Data Science"}</strong><p>{isWebDeveloper ? "Design → build → improve" : "Analysis → modelling → insight"}</p><small>One step at a time</small></div>
             </div>
           </section>
 
@@ -582,7 +593,7 @@ function App() {
             <div className="toolkit-grid">
               {displayedSkills.map(({ name, detail, level, icon: Icon }, index) => <div className="skill-card reveal" key={name} style={{ transitionDelay: `${index * 55}ms` }}><div className="skill-top"><Icon size={19}/><span>{level}</span></div><strong>{name}</strong><p>{detail}</p></div>)}
             </div>
-            <div className="toolkit-note reveal"><Sparkles size={16}/><span>Currently deepening my foundations in data analysis, statistics and machine learning.</span></div>
+            <div className="toolkit-note reveal"><Sparkles size={16}/><span>{isWebDeveloper ? "Currently deepening my foundations in responsive design, React and full-stack web development." : "Currently deepening my foundations in data analysis, statistics and machine learning."}</span></div>
           </section>
 
           <section className="beyond-section section-wrap section-space">
@@ -596,7 +607,7 @@ function App() {
 
           <section id="contact" className="contact-section section-wrap">
             <div className="contact-top reveal"><SectionLabel index="06">TO BE CONTINUED</SectionLabel><span>THE NEXT CHAPTER STARTS WITH A CONVERSATION.</span></div>
-            <div className="contact-content reveal"><h2>Have a good<br/><em>question?</em></h2><a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}<ArrowUpRight size={21}/></a><p>I’m always interested in thoughtful conversations about data, technology and opportunities to learn by doing.</p></div>
+            <div className="contact-content reveal"><h2>Have a good<br/><em>question?</em></h2><a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}<ArrowUpRight size={21}/></a><p>{isWebDeveloper ? "I’m interested in web development opportunities and conversations about building useful websites and applications." : "I’m always interested in thoughtful conversations about data, technology and opportunities to learn by doing."}</p></div>
             <div className="contact-bottom">
               <BrandMark />
               <div className="social-links"><a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon size={18}/></a><a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18}/></a><a href={`mailto:${EMAIL}`} aria-label="Email"><Mail size={18}/></a></div>

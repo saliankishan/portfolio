@@ -664,9 +664,9 @@ body:has(.profile-gate) { overflow: hidden; }
 .profile-option-analyst .profile-avatar { background: linear-gradient(145deg,#1e3439,#101719 75%); }
 .profile-option-analyst .profile-avatar-symbol { color: #a3c7c4; text-shadow: 0 0 35px rgba(115,190,184,.33); }
 .profile-option-analyst .profile-avatar-halo { background: radial-gradient(circle,rgba(101,173,171,.28),transparent 70%); }
-.profile-option-scientist .profile-avatar { background: linear-gradient(145deg,#302943,#15121c 75%); }
-.profile-option-scientist .profile-avatar-symbol { color: #c6b5e2; text-shadow: 0 0 35px rgba(164,132,212,.36); }
-.profile-option-scientist .profile-avatar-halo { background: radial-gradient(circle,rgba(154,124,205,.3),transparent 70%); }
+.profile-option-developer .profile-avatar { background: linear-gradient(145deg,#302943,#15121c 75%); }
+.profile-option-developer .profile-avatar-symbol { color: #c6b5e2; text-shadow: 0 0 35px rgba(164,132,212,.36); }
+.profile-option-developer .profile-avatar-halo { background: radial-gradient(circle,rgba(154,124,205,.3),transparent 70%); }
 .profile-option-explorer .profile-avatar { background: linear-gradient(145deg,#3a2c24,#191512 75%); }
 .profile-option-explorer .profile-avatar-symbol { color: #e4c28f; text-shadow: 0 0 35px rgba(224,179,116,.34); }
 .profile-option-explorer .profile-avatar-halo { background: radial-gradient(circle,rgba(216,165,96,.3),transparent 70%); }
@@ -921,7 +921,7 @@ body:has(.profile-gate) { overflow: hidden; }
   --accent: #8abbb4;
   --accent-bright: #b7ddd5;
 }
-.profile-mode-scientist {
+.profile-mode-developer {
   --accent: #b49bd0;
   --accent-bright: #d0bce8;
 }
@@ -934,22 +934,22 @@ body:has(.profile-gate) { overflow: hidden; }
 @media (min-width: 701px) {
   .profile-mode-recruiter.portfolio-unlocked main,
   .profile-mode-analyst.portfolio-unlocked main,
-  .profile-mode-scientist.portfolio-unlocked main,
+  .profile-mode-developer.portfolio-unlocked main,
   .profile-mode-explorer.portfolio-unlocked main {
     display: flex;
     flex-direction: column;
   }
   .profile-mode-recruiter main > .hero,
   .profile-mode-analyst main > .hero,
-  .profile-mode-scientist main > .hero,
+  .profile-mode-developer main > .hero,
   .profile-mode-explorer main > .hero { order: 1; }
   .profile-mode-recruiter main > .profile-lens,
   .profile-mode-analyst main > .profile-lens,
-  .profile-mode-scientist main > .profile-lens,
+  .profile-mode-developer main > .profile-lens,
   .profile-mode-explorer main > .profile-lens { order: 2; }
   .profile-mode-recruiter main > .ticker,
   .profile-mode-analyst main > .ticker,
-  .profile-mode-scientist main > .ticker,
+  .profile-mode-developer main > .ticker,
   .profile-mode-explorer main > .ticker { order: 3; }
 
   /* Recruiter: establish the candidate story and proof points early. */
@@ -968,13 +968,13 @@ body:has(.profile-gate) { overflow: hidden; }
   .profile-mode-analyst main > .beyond-section { order: 8; }
   .profile-mode-analyst main > #contact { order: 9; }
 
-  /* Scientist: lead with the research question and modelling direction. */
-  .profile-mode-scientist main > #research { order: 4; }
-  .profile-mode-scientist main > #work { order: 5; }
-  .profile-mode-scientist main > #toolkit { order: 6; }
-  .profile-mode-scientist main > #story { order: 7; }
-  .profile-mode-scientist main > .beyond-section { order: 8; }
-  .profile-mode-scientist main > #contact { order: 9; }
+  /* Developer: lead with web projects and the practical toolkit. */
+  .profile-mode-developer main > #research { order: 7; }
+  .profile-mode-developer main > #work { order: 4; }
+  .profile-mode-developer main > #toolkit { order: 5; }
+  .profile-mode-developer main > #story { order: 6; }
+  .profile-mode-developer main > .beyond-section { order: 8; }
+  .profile-mode-developer main > #contact { order: 9; }
 
   /* Explorer: keep the broad, original walk-through. */
   .profile-mode-explorer main > #story { order: 4; }
