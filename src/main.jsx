@@ -96,6 +96,20 @@ const projects = [
     link: "https://github.com/saliankishan/Vijaya-Food-Fest",
     linkLabel: "View repository",
     visual: "food"
+  },
+  {
+    id: "students",
+    number: "07",
+    category: "Data analysis · Business intelligence",
+    title: "Student Performance Analysis",
+    subtitle: "From messy records to a clear report.",
+    description: "Built a pandas ETL pipeline to clean 200 synthetic student records, remove duplicates and invalid attendance or exam values, and export 182 cleaned records. A Power BI report compares average exam scores across attendance groups and displays the student count. The project includes reproducible setup instructions; the findings illustrate fictional data and do not establish causation.",
+    stack: ["Python", "Pandas", "ETL", "Power BI"],
+    status: "Built",
+    type: "data",
+    link: "https://github.com/saliankishan/student-performance-analysis",
+    linkLabel: "View repository & report",
+    visual: "students"
   }
 ];
 
@@ -143,7 +157,7 @@ const VIEWER_PROFILES = [
     toolkitIntro: "A practical snapshot of the technologies I have used across coursework and projects, without overstating my level of expertise.",
     skillOrder: ["Python", "SQL", "Excel", "C++", "Flask", "HTML & CSS"],
     storySectionTitle: "BACKGROUND & EDUCATION",
-    projectOrder: ["weather", "retirement", "helpdesk", "aircanvas", "wumpus", "foodfest"],
+    projectOrder: ["students", "weather", "retirement", "helpdesk", "aircanvas", "wumpus", "foodfest"],
     focus: [
       { label: "CURRENT STUDY", value: "MCA", detail: "MIT Manipal · School of Computer Engineering" },
       { label: "ACADEMIC FOUNDATION", value: "BCA · 9.6 CGPA", detail: "Computer Applications" },
@@ -166,7 +180,7 @@ const VIEWER_PROFILES = [
     lensIntro: "This view prioritises the tools and projects closest to an entry-level data analyst path.",
     workLabel: "DATA PROJECTS",
     workTitle: "Working with data.",
-    workIntro: "Start with the data-focused projects: a weather dashboard and a predictive retirement-fund research study.",
+    workIntro: "Explore a Python-to-Power BI student analysis, a weather dashboard and a predictive retirement-fund research study.",
     storyLead: "I’m building towards data analytics by learning how to question, clean, structure and interpret information — then communicate what it means.",
     storyDetail: "My current foundations are Python, SQL and Excel. The Weather Dashboard helped me work with external data and comparisons, while my retirement-fund research lets me explore synthetic financial data and predictive approaches.",
     storyDetailExtra: "I’m still developing my analytical and statistical depth. My goal is to become a capable data analyst first, then grow towards data science through stronger modelling and experimentation.",
@@ -174,7 +188,7 @@ const VIEWER_PROFILES = [
     toolkitIntro: "Prioritising the practical foundations most relevant to analyst work: programming, querying structured data and working with spreadsheets.",
     skillOrder: ["SQL", "Python", "Excel", "Flask", "C++", "HTML & CSS"],
     storySectionTitle: "THE ANALYTICAL PATH",
-    projectOrder: ["retirement", "weather", "helpdesk", "aircanvas", "wumpus", "foodfest"],
+    projectOrder: ["students", "retirement", "weather", "helpdesk", "aircanvas", "wumpus", "foodfest"],
     focus: [
       { label: "CORE TOOLS", value: "SQL · Python · Excel", detail: "Building analysis foundations" },
       { label: "DATA APPLICATION", value: "Weather Dashboard", detail: "API data · comparisons · history" },
@@ -205,7 +219,7 @@ const VIEWER_PROFILES = [
     toolkitIntro: "The frontend and backend technologies I’m applying in my web projects, from browser fundamentals to React interfaces and Flask applications.",
     skillOrder: ["HTML & CSS", "JavaScript", "React", "TypeScript", "Flask", "SQL", "Python"],
     storySectionTitle: "THE WEB DEVELOPMENT PATH",
-    projectOrder: ["wumpus", "foodfest", "weather", "helpdesk", "aircanvas", "retirement"],
+    projectOrder: ["wumpus", "foodfest", "weather", "helpdesk", "aircanvas", "retirement", "students"],
     focus: [
       { label: "FRONTEND", value: "React · JavaScript", detail: "Interactive browser experiences" },
       { label: "WEB FOUNDATIONS", value: "HTML · CSS", detail: "Page structure · responsive layouts" },
@@ -236,7 +250,7 @@ const VIEWER_PROFILES = [
     toolkitIntro: "A mix of languages and tools used across web projects, Python applications and early data-focused work.",
     skillOrder: ["HTML & CSS", "Python", "C++", "SQL", "Flask", "Excel"],
     storySectionTitle: "THE WIDER PICTURE",
-    projectOrder: ["wumpus", "foodfest", "aircanvas", "helpdesk", "weather", "retirement"],
+    projectOrder: ["wumpus", "foodfest", "aircanvas", "helpdesk", "weather", "retirement", "students"],
     focus: [
       { label: "INTERACTIVE WEB", value: "Hunt the Wumpus", detail: "React · TypeScript · browser game" },
       { label: "CREATIVE COMPUTING", value: "Air Canvas", detail: "Real-time hand tracking" },
@@ -299,6 +313,11 @@ function SectionLabel({ index, children }) {
 }
 
 function ProjectVisual({ kind }) {
+  if (kind === "students") return (
+    <div className="project-visual visual-students">
+      <img src={`${import.meta.env.BASE_URL}images/student-performance-dashboard.png`} alt="Power BI report: 182 students; average exam scores of 65.0 for high attendance, 58.4 for mid and 51.5 for low attendance. Synthetic data." loading="lazy" />
+    </div>
+  );
   return (
     <div className={`project-visual visual-${kind}`} aria-hidden="true">
       {kind === "retirement" && <><div className="visual-orbit orbit-one" /><div className="visual-orbit orbit-two" /><div className="visual-core"><span>FUND</span><strong>↗</strong></div><div className="visual-data data-a">+8.4%</div><div className="visual-data data-b">2048</div><div className="visual-line" /></>}
